@@ -7,12 +7,12 @@ class TasksList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: [
+      children: const [
         TaskTile(),
-        ListTile(
-          title: Text('this is our title'),
-          trailing: Checkbox(value: false, onChanged: (onChanged) {}),
-        ),
+        TaskTile(),
+        TaskTile(),
+        TaskTile(),
+        TaskTile(),
       ],
     );
   }
