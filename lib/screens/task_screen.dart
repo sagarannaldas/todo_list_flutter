@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_list_flutter/models/task_data.dart';
 import 'package:todo_list_flutter/widgets/tasks_list.dart';
 import 'add_task_screen.dart';
 import 'package:todo_list_flutter/models/task.dart';
@@ -11,14 +13,6 @@ class TaskScreen extends StatefulWidget {
 }
 
 class _TaskScreenState extends State<TaskScreen> {
-  List<Task> tasks = [
-    Task(name: 'Buy milk'),
-    Task(name: 'Buy powder'),
-    Task(name: 'Buy methi'),
-    Task(name: 'Buy alooo'),
-    Task(name: 'Buy pakoda'),
-  ];
-
   Widget buildModalBottomSheet(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
@@ -26,7 +20,7 @@ class _TaskScreenState extends State<TaskScreen> {
             EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
         child: AddTaskScreen((newTaskTitle) {
           setState(() {
-            tasks.add(Task(name: newTaskTitle));
+            Provider.of<TaskData>(context).addTask(Task(name: newTaskTitle));
           });
         }),
       ),
@@ -77,7 +71,7 @@ class _TaskScreenState extends State<TaskScreen> {
                   ),
                 ),
                 Text(
-                  '${tasks.length} Tasks',
+                  '${Provider.of<TaskData>(context).taskCount} Tasks',
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -97,9 +91,7 @@ class _TaskScreenState extends State<TaskScreen> {
                   topRight: Radius.circular(20.0),
                 ),
               ),
-              child: TasksList(
-                tasks: tasks,
-              ),
+              child: const TasksList(),
             ),
           )
         ],
