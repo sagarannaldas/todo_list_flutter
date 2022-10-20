@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:todo_list_flutter/models/task_data.dart';
 import 'package:todo_list_flutter/widgets/tasks_list.dart';
 import 'add_task_screen.dart';
-import 'package:todo_list_flutter/models/task.dart';
 
 class TaskScreen extends StatefulWidget {
   const TaskScreen({Key? key}) : super(key: key);
@@ -18,11 +17,7 @@ class _TaskScreenState extends State<TaskScreen> {
       child: Container(
         padding:
             EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-        child: AddTaskScreen((newTaskTitle) {
-          setState(() {
-            Provider.of<TaskData>(context).addTask(Task(name: newTaskTitle));
-          });
-        }),
+        child: const AddTaskScreen(),
       ),
     );
   }
